@@ -1,0 +1,191 @@
+﻿body {
+}
+
+table, th, tr, td {
+	border: 1px solid black;
+	padding: 3px;
+}
+
+div.content {
+    display: block;
+    width: 50em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+div.content * {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.game-board {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1em;
+}
+
+img.banner-image {
+    display: block;
+    width: 200px;
+}
+
+input.tail-left-button {
+    float: left;
+}
+
+input.tail-right-button {
+    float: right;
+}
+
+input#start-game {
+    border-radius: 3px;
+    border: none;
+    background-color: darkgreen;
+    color: gold;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+input#reset-game {
+    border: none;
+    border-radius: 3px;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+th.player-name {
+    padding-left: 2px;
+    width: 120px;
+    cursor: text;
+    background-color: #BD338C;
+    color: #00DAFF;
+    border-radius: 3px;
+	position: relative;
+}
+
+th.player-name, td.score-cell {
+	white-space: nowrap;
+}
+
+input.add-player-button {
+    background-color: #BD338C;
+    color: #00DAFF;
+}
+
+input.edit-name-textbox, input.edit-score-textbox {
+    background-color: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    text-align: inherit;
+    color: inherit;
+}
+
+input.edit-name-textbox, input.edit-score-textbox {
+    border: none;
+    outline: 0;
+}
+
+th.add-player-button-cell {
+    padding-left: 8px;
+}
+
+th.round-header {
+    padding-right: 5px;
+    text-decoration: underline;
+}
+
+table.score-board {
+    margin-bottom: 30px;
+}
+
+td.score-cell {
+    cursor: text;
+    border-radius: 3px;
+    background-color: #ECD8E8;
+}
+
+td.total-cell {
+    border-radius: 3px;
+    background-color: #922461;
+    color: #00DAFF;
+}
+
+td.round-leader {
+    background-color: #02BB02 !important;
+    color: yellow !important;
+}
+
+td.total-leader {
+    background-color: gold !important;
+    color: #1C6D1C !important;
+}
+
+div.error {
+    display: none;
+    width: 300px;
+    height: 70px;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: 1em;
+    line-height: 70px;
+    text-align: center;
+    color: red;
+}
+
+span.error {
+    vertical-align: middle;
+    display: inline-block;
+    line-height: normal;
+}
+
+img.remove-player-button {
+    width: 15px;
+    cursor: pointer;
+	position: absolute;
+	right: -8px;
+	top: -8px;
+	z-index: 10;
+}
+
+input.edit-name-textbox {
+    width: 100%;
+}
+
+input.edit-score-textbox {
+    width: 100%;
+}
+
+@media only screen and (max-device-width: 600px) {
+	.content {
+		width: 100%;
+	}
+	
+	.score-board {
+		width: 100%;
+		font-size: 1.7em;
+	}
+	
+	input  {
+		font-size: 1.3em;
+	}
+	
+	input#start-game, input#reset-game {
+		font-size: 1.7em;
+	}
+	
+	img.banner-image {
+		width: 320px;
+	}
+	
+	img.remove-player-button {
+		width: 30px;
+		top: -15px;
+		right: -15px;
+	}
+	
+	th.player-name {
+		width: 114px;
+	}
+}

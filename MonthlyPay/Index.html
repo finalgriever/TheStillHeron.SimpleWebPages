@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="favicon.ico">
+    <title>Monthly Pay</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="MonthlyPay.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="MonthlyPay.css" />
+</head>
+<body>
+    <div class="content">
+        <div class="inputs">
+            <div class="input-container">
+                <label>Start Date:</label>
+                <input id="startDate" type="date" />
+            </div>
+            <div class="input-container">
+                <label>First Pay:</label>
+                <input id="firstPay" type="date" />
+            </div>
+            <div class="input-container">
+                <label>Balance:</label>
+                <input id="balance" type="number" />
+            </div>
+            <div class="input-container">
+                <label>Fortnightly Spend:</label>
+                <input id="spend" type="number" />
+            </div>
+            <div class="input-container">
+                <label>Months to Calculate:</label>
+                <input id="months" type="number" />
+            </div>
+            <div class="input-container">
+                <label>Monthly Salary:</label>
+                <input id="salary" type="number" />
+            </div>
+            <div class="input-container">
+                <label>Rent Income:</label>
+                <input id="rentIn" type="number" />
+            </div>
+            <div class="input-container">
+                <label>Rent Income Shared:</label>
+                <input id="rentSplit" type="number" />
+            </div>
+        </div>
+        <div class="results">
+            Result: <input type="number" id="result" />
+        </div>
+		<table class="log">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Item</th>
+					<th>Balance</th>
+					<th>Credit</th>
+					<th>Debit</th>
+				</tr>
+			</thead>
+			<tbody class="log-body">
+				
+			</tbody>
+		</div>
+    </div>
+</body>
+</html>
