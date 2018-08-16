@@ -5,7 +5,7 @@
     balance: 0,
     months: 24,
     salary: 6108,
-	spend: 2364,
+	spend: 1954,
     rentSplit: 170,
     rentIn: 1194,
 
@@ -50,12 +50,12 @@
         return firstPay;
     },
 	
-	getCreditLine: function(date, item, balance, value) {
-		return "<tr><td>" + date.toISOString().split('T')[0] + "</td><td>" + item + "</td><td>" + balance + "</td><td>" + value + "</td><td>&nbsp;</td></tr>";
+	getCreditLine: function(item) {
+		return "<tr><td>" + item.date.toISOString().split('T')[0] + "</td><td>" + item.header + "</td><td>" + item.balance + "</td><td>" + item.credit + "</td><td>&nbsp;</td><td>" + item.lowest + "</td></tr>";
 	},
 	
-	getDebitLine: function(date, item, balance, value) {
-		return "<tr><td>" + date.toISOString().split('T')[0] + "</td><td>" + item + "</td><td>" + balance + "</td><td>&nbsp;</td><td>" + value + "</td></tr>";
+	getDebitLine: function(item) {
+		return "<tr><td>" + item.date.toISOString().split('T')[0] + "</td><td>" + item.header + "</td><td>" + item.balance + "</td><td>&nbsp;</td><td>" + item.debit + "</td><td>" + item.lowest + "</td></tr>";
 	},
 
     runCalculation: function() {
@@ -75,8 +75,50 @@
         var dayCount = 14 - Math.ceil(Math.abs(startDate.getTime() - firstPay.getTime()) / (1000 * 3600 * 24));
         var lowestBalance = 99999999;
 		var logBody = $(".log-body");
-		logBody.empty();
+        logBody.empty();
+        
+        var lines = [];
+        while(monthCount <= months) {
+            if (currentDate.getDate() === 2) {
+                balance += rentIn;
+                lines.push({date: currentDate, header: "Rent", balance: balance, credit: rentIn });
+            } else if (currentDate.getDate() === 15) {
+                balance += salary;
+                lines.push({date: currentDate, header: "Salary", balance: balance, credit: salary });
+            }
+            if(dayCount === 14) {
+                balance = balance - fortnightlyCost;
+                lines.push({date: currentDate, header: "Spend", balance: balance, debit: fortnightlyCost });
+				balance = balance - rentSplit;
+                lines.push({date: currentDate, header: "Rent split", balance: balance, debit: rentSplit });
+                dayCount = 0;
+            }
+            if(originalDay === currentDate.getDate()) {
+                monthCount++;
+            }
 
+            lowestBalance = lowestBalance > balance ? balance : lowestBalance;
+            currentDate = MonthlyPay.addDays(currentDate, 1);
+            dayCount++;
+        }
+
+        var lowest = 99999999;
+        for(var i = lines.length - 1; i >= 0; i--) {
+            if(lines[i].balance < lowest) {
+                lowest = lines[i].balance;
+            }
+            lines[i].lowest = lowest;
+        }
+
+        for(var i = 0 ; i < lines.length; i++) {
+            if(!!lines[i].credit) {
+                $(".log-body").append(MonthlyPay.getCreditLine(lines[i]));
+            } else {
+                $(".log-body").append(MonthlyPay.getDebitLine(lines[i]));
+            }
+        }
+
+        /*
         while(monthCount <= months) {
             if(currentDate.getDate() === 2) {
                 balance += rentIn;
@@ -100,6 +142,7 @@
             currentDate = MonthlyPay.addDays(currentDate, 1);
             dayCount++;
         }
+        */
 
         $('#result').val(lowestBalance);
     }
